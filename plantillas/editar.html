@@ -1,0 +1,39 @@
+{{ define "editar" }}
+{{ template "cabecera" }}
+
+<div class="card">
+    <div class="card-body">
+        <form method="POST" action="/update">
+ 
+            <div class="form-group">
+                <label for="">Nombre:</label>
+                <input id="txtNombre" value={{.Nombre}} name="txtNombre" type="text" placeholder="Escreibe el Nombre" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="">Tipo de Habitacion </label>
+                <input id="txtHabitacion" value="{{.habitacion}}" name="txtHabitacion" type="text" placeholder="Tipo de Habitacion" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="">Numero de Habitacion</label>
+                <input id="txtNumero" value="{{.numero}}" name="txtNumero" type="text" placeholder="Numero de la Habitacion" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="">Precio</label>
+                <input id="txtPrecio" value="{{.precio}}" name="txtPrecio" type="text" placeholder="Precio" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            
+            <button class="btn btn-warning" href="/">Regresar</button>
+            <button type="submit" class="btn btn-primary" onclick="return confirmMod()">Modificar</button>
+            
+
+        </form>
+        </form>
+    </div>    
+</div>
+
+{{ template "pie" }}
+{{ end }}

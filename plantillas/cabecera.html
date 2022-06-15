@@ -1,0 +1,511 @@
+{{ define "cabecera" }}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Extranet</title>
+    <link rel="stylesheet" href="./CSS/style.css">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- Boxicons CDN LINK --> 
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<script>
+    function confirmMod()
+    {
+        var respueta = confirm("Estas seguro que deseas modificar?");
+        if(respueta == true){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    function confirmDelete()
+    {
+        var respueta = confirm("Estas seguro que deseas eliminar este nombre?");
+        if(respueta == true){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    let btn = document.querySelector("#btn");
+    let sidebar = document.querySelector(".sidebar");
+
+    btn.onclick = function(){
+        sidebar.classList.toggle("active")
+    }
+</script>
+<style>
+    /*Google Font Poppins*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+/*Diseño NavBar*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.sidebar{
+    position: fixed;
+    top: 17px;
+    left: 5px;
+    height: 95%;
+    width: 78px;
+    background: #12101d;
+    padding: 6px 14px;
+    border-radius: 12px;
+    z-index: 3;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+    transition: all 0.5s ease;
+}
+
+.sidebar.active{
+    width: 220px;
+}
+
+.sidebar .logo_content .logo{
+    color: rgb(255, 255, 255);
+    display: flex;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+.sidebar.active .logo_content .logo{
+    opacity: 1;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+.logo_content .logo i{
+    font-size: 28px;
+    margin-right: 5px;
+}
+
+.logo_content .logo .logo_name{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.sidebar #btn{
+    position: absolute;
+    color: #fff;
+    top: 6px;
+    left: 57%;
+    font-size: 20px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    transform: translateX(-50%);
+    transition: all 0.4s ease;
+    border-radius: 12px;
+}
+
+.sidebar #btn:hover{
+    color: #ffffff;
+    background: #1d1b31;
+}
+
+.sidebar.active #btn{
+    left: 90%;
+}
+
+.sidebar ul{
+    margin-top: 25px;
+}
+
+.sidebar ul li{
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin: 0 5px;
+    left: -35px;
+    line-height: 50px;
+    list-style: none;
+    border-radius: 12px;
+}
+
+.sidebar ul li .tooltap{
+    position: absolute;
+    left: 122px;
+    top: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 6px;
+    height: 35px;
+    width: 122px;
+    background: #fff;
+    line-height: 35px;
+    text-align: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    transition: 0s;
+    opacity: 0;
+    pointer-events: none;
+    display: block;
+}
+
+.sidebar.active ul li .tooltap{
+    display: none;
+}
+
+.sidebar ul li:hover .tooltap{
+    transition: all 0.5s ease;
+    opacity: 1;
+    top: 50%;
+}
+
+.sidebar ul li a{
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+.sidebar ul li a:hover{
+    color: #11101d;
+    background: #fff;
+}
+
+.sidebar ul li i{
+    height: 50px;
+    min-width: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.sidebar .links_name{
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+.sidebar.active .links_name{
+    opacity: 1;
+    transition: all 0.5s ease;
+    pointer-events: auto;
+}
+
+.sidebar .profile_content{
+    position: absolute;
+    color: #fff;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.sidebar .profile_content .profile{
+    position: relative;
+    padding: 10px 6px;
+    height: 60px;
+    background: none;
+    transition: all 0.5 ease;
+}
+.sidebar.active .profile_content .profile{
+    background: #1d1b31;
+}
+.profile_content .profile .profile_details{
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+}
+.sidebar.active .profile .profile_details{
+    opacity: 1;
+    pointer-events: auto;
+}
+.profile .profile_details img{
+    height: 45px;
+    width: 45px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.profile .profile_details .name_job{
+    margin-left: 10px;
+}
+.profile .profile_details .name{
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.profile .profile_details .job{
+    font-size: 12px;
+}
+
+.profile #log_out{
+    position: absolute;
+    bottom: 5px;
+    left: 57%;
+    transform: translateX(-50%);
+    min-width: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.5 ease;
+    background: #1d1b31;
+}
+
+.sidebar.active .profile #log_out{
+    left: 88%;
+}
+
+.sidebar.active .profile #log_out{
+    background: none;
+    border-radius: 12px;
+}
+
+.home_content{
+    position: absolute;
+    height: 100%;
+    width: calc(100% - 78px);
+    left: 90px;
+    transition: all 0.5s ease;
+}
+/*
+.home_content .text{
+    font-size: 25px;
+    font-weight: 500;
+    color: #1d1b31;
+    margin-top: 15px;
+}*/
+
+.sidebar.active ~ .home_content{
+    width: calc(100%-240px);
+    left: 240px;
+}
+
+.tituloReservas{
+    background : #F6F5F8;
+    background : rgba(246, 245, 248, 1);
+    position : absolute ;
+    display: block;
+    left : 100px;
+    top : 60px;
+    width : 800px;
+    height : 125px;
+    border-radius : 31px;
+   /* -moz-border-radius : 31px;
+    -webkit-border-radius : 31px;*/
+}
+
+.tituloReservas h1{
+    position: absolute;
+    font-family : Anteb Alt;
+    font-size : 50px;
+    color : #000000;
+    color : rgb(0, 0, 0);
+    left: 30px;
+    top: 15px;
+}
+
+.tituloReservas h2{
+    position: absolute;
+    font-family : Anteb Alt light;
+    font-size : 30px;
+    color : #000000;
+    color : rgb(0, 0, 0);
+    left: 30px;
+    top: 65%;
+}
+.tituloReservas img{
+    position : absolute ;
+    left : 60%;
+    top : -40px;
+    width : 206px;
+    height : 180px;
+}
+.tablaReservas{
+    position: absolute;
+    top: 35%;
+    left: 100px;
+    height: 95%;
+    width: 100%;
+    padding: 6px 14px;
+    border-radius: 12px;
+}
+
+.tablaReservas h3{
+    font-family : Anteb Alt medium;
+    font-size : 25px;
+    color : #000000;
+    color : rgb(0, 0, 0);
+}
+
+
+.tabla thead tr td{
+    font-family : Anteb Alt Regular;
+    position: relative;
+    font-size : 17px;
+    margin: 10px 7px;
+    color : #000000;
+    color : rgb(0, 0, 0);
+}
+
+.tabla td{
+    border:1px solid rgb(255, 255, 255);
+    padding: 10px 15px;
+    padding-top: 8px;    
+    padding-bottom: 8px;
+}
+
+.tabla #editar_btn{
+    color: #fff;
+    background: #11101d;
+    height: 40px;
+    width: 50px;
+    line-height: 46px;
+    text-align: center;
+    transform: translateX(-50%);
+    transition: all 0.4s ease;
+    border-radius: 12px;
+}
+
+.tabla #editar_btn:hover{
+    color: #ffffff;
+    background: #403d61;
+}
+
+.tabla #borrar_btn{
+    color: #fff;
+    background: #6d1f35;
+    height: 40px;
+    width: 50px;
+    line-height: 46px;
+    text-align: center;
+    transform: translateX(-50%);
+    transition: all 0.4s ease;
+    border-radius: 12px;
+}
+
+.tabla #borrar_btn:hover{
+    color: #ffffff;
+    background: #8c445a;
+}
+
+
+
+.tablaReservas .links_name {
+    opacity: 1;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+.tablaReservas #btn_add{
+    position: absolute;
+    color: #fff;
+    background-color: #11101d;
+    top: 50px;
+    left: 40%;
+    font-size: 15px;
+    height: 35px;
+    width: 130px;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    border-radius: 12px;
+}
+
+.tablaReservas #btn_add:hover{
+    color: #fff;
+    background: #403d61;
+}
+
+.card .card-body{
+    position: absolute;
+    top: 35%;
+    left: 100px;
+    height: 95%;
+    width: 100%;
+    padding: 6px 14px;
+    border-radius: 12px;
+}
+
+</style>
+<body>
+    <div class="sidebar">
+        <div class="logo_content">
+            <div class="logo">
+                <i class='bx bx-buildings'></i>
+                <div class="logo_name">Extranet</div>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav_list">
+            <li>
+                <a href="#">
+                    <i class='bx bxs-user'></i>
+                    <span class="links_name">Usuario</span>
+                </a>
+                <span class="tooltap">Usuario</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bxs-home-alt-2'></i>
+                    <span class="links_name">Habitaciones</span>
+                </a>
+                <span class="tooltap">Habitaciones</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bxs-calendar'></i>
+                    <span class="links_name">Reservas</span>
+                </a>
+                <span class="tooltap">Reservas</span>
+            </li>
+            <li>
+                <a href="/inicio">
+                    <i class='bx bxs-planet'></i>
+                    <span class="links_name">Disponibilidad</span>
+                </a>
+                <span class="tooltap">Disponibilidad</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-question-mark'></i>
+                    <span class="links_name">Acerca de</span>
+                </a>
+                <span class="tooltap">Acerca de</span>
+            </li>
+
+        </ul>
+        <div class="profile_content">
+            <div class="profile">
+                <div class="profile_details">
+                    <img src="/images/fotoPerfil.jpeg" alt="">
+                    <div class="name_job">
+                        <div class="name">Abraham Ponce</div>
+                        <div class="job">Diseñador Web</div>
+                    </div>
+                </div>
+                <i class='bx bx-log-out' id="log_out"></i>
+            </div>
+        </div>
+    </div>
+{{end}}

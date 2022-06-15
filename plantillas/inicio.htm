@@ -1,0 +1,53 @@
+{{ define "inicio" }}
+{{ template "cabecera"}}
+
+    <!-- Plantilla Para Reservas -->
+    <div class="home_content">
+        <!-- <div class="text">Contenido de Inicio</div> -->
+        <div class="tituloReservas">
+            <img src="../images/hotel.png" alt="">
+            <h1>Bienvenido</h1>
+            <h2>Reservas por fecha</h2>
+        </div>
+        <!-- No esta en Go -->
+        <div class="tablaReservas">
+            <h3 class="nombreTabla">Datos de Resrva</h3>
+            <a href="/crear" id="btn_add">
+                <i class='bx bxs-add-to-queue'></i>
+                <span class="links_name">Añadir reserva</span>
+            </a>
+            <table class="tabla">
+                <thead> <!-- Encabezado de la tabla-->
+                    <tr>
+                        <td>Id</td>
+                        <td>Nombre de Reserva</td>
+                        <td>Tipo de Habitación</td>
+                        <td>Numero  </td>
+                        <td>Precio  </td>
+                    </tr>
+                </thead>
+                <tbody> <!--Cuerpo de la tabla-->
+                  {{ range. }} 
+                  <tr>
+                    <div class="renglones">
+                        <td>{{ .Id }}</td>
+                        <td>{{ .Nombre }}</td>
+                        <td>{{ .habitacion }}</td>
+                        <td>{{ .numero }}</td>
+                        <td>{{ .precio }}</td>
+                    </div>
+                    <td>
+
+                        <a role="button" class="btn btn-primary" id="editar" href="/editar?id={{.Id}}">Editar</a> 
+                        <a role="button" class="btn btn-warning" id="Eliminar" href="/borrar?id={{.Id}}" onclick="return confirmDelete()">Borrar</a> 
+                    </td>
+                  </tr>
+                  {{ end }}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+<!-- {{template "pie"}} -->
+{{ end }}
